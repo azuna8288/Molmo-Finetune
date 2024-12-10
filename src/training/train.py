@@ -197,7 +197,7 @@ def train():
     if training_args.lora_enable:
         if local_rank == 0 or local_rank == -1:
             model = model.merge_and_unload()
-            model.config.save_pretrained(training_args.output_dir)
+            # model.config.save_pretrained(training_args.output_dir)
             model.save_pretrained(training_args.output_dir, safe_serialization=True)
             # model.save_pretrained(training_args.output_dir, state_dict=state_dict)
             # torch.save(non_lora_state_dict, os.path.join(training_args.output_dir, "non_lora_state_dict.bin"))
