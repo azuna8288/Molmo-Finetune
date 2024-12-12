@@ -13,7 +13,7 @@ if os.environ.get("MODEL_NAME", None) == None:
 
 
 username = 'monster119120'
-version = 0
+version = 8
 create_sucess = False
 while not create_sucess:
     try:
