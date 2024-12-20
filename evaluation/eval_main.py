@@ -54,4 +54,4 @@ for single_data in all_data:
 
     print(question, generated_answer, gold_answer)
     
-    x = input()
+    # x = input()
