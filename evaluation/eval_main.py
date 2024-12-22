@@ -8,8 +8,9 @@ from tqdm import tqdm
 
 parser = argparse.ArgumentParser(description="test")
 parser.add_argument('--model_path', default="Molmo-7B-D-0924", type=str, help='model path')
-parser.add_argument('--parquet_file_path', default="data/chunk01.parquet", type=str, help='eval data path')
+parser.add_argument('--data_path', required=True, type=str, help='eval data path')
 parser.add_argument('--img_folder_path', default="data/images", type=str, help='img path')
+parser.add_argument('--out_path', default="eval_result.json", type=str, help='save path')
 args = parser.parse_args()
 
 def scale_bbox(bbox, img_size):
@@ -52,7 +53,12 @@ model = AutoModelForCausalLM.from_pretrained(
     device_map='auto'
 )
 
-all_data = pd.read_parquet(args.parquet_file_path)
+if args.data_path.endswith('.json'):
+    all_data = pd.read_json(args.data_path)
+elif args.data_path.endswith('.parquet'):
+    all_data = pd.read_parquet(args.data_path)
+else:
+    raise ValueError('data_path must be json or parquet')
 
 success_count = 0
 total_count = 0
@@ -90,4 +96,10 @@ for idx, single_data in tqdm(all_data.iterrows()):
     except:
         error_count += 1
     total_count += 1
-print(f"ACC: {success_count/total_count:.2f}, error_count: {error_count}")
+
+    break
+
+result = {"ACC": success_count/total_count, "error_count": error_count, "total_count": total_count}
+with open(args.out_path, 'a') as f:
+    json.dump(result, f, indent=4)
+print(result)
