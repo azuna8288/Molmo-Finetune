@@ -97,7 +97,7 @@ for idx, single_data in tqdm(all_data.iterrows()):
         error_count += 1
     total_count += 1
 
-    break
+    
 
 result = {"ACC": success_count/total_count, "error_count": error_count, "total_count": total_count}
 with open(args.out_path, 'a') as f:
