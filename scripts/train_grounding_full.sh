@@ -13,7 +13,7 @@ freeze_llm="False"
 tune_projector="True"
 
 
-OUT_DIR="output/epoch${num_train_epochs}_bs${per_device_train_batch_size}_ga${gradient_accumulation_steps}_lr${learning_rate}_proj_lr${projector_lr}_vision_lr${vision_lr}_freeze_vision_tower${freeze_vision_tower}_freeze_llm${freeze_llm}_tune_projector${tune_projector}"
+OUT_DIR="output/full_epoch${num_train_epochs}_bs${per_device_train_batch_size}_ga${gradient_accumulation_steps}_lr${learning_rate}_proj_lr${projector_lr}_vision_lr${vision_lr}_freeze_vision_tower${freeze_vision_tower}_freeze_llm${freeze_llm}_tune_projector${tune_projector}"
 
 deepspeed --master_port 1237 --include="localhost:0,1,2,3,4,5,6,7"  src/training/train.py \
     --deepspeed scripts/zero3.json \

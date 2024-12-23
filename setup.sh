@@ -19,6 +19,7 @@ else
 fi
 cd ..
 
+mkdir output
 pip3 install -r requirements.txt
 export MODEL_NAME="Molmo-7B-D-0924"
 modelscope download --model "LLM-Research/Molmo-7B-D-0924" --local_dir $MODEL_NAME
