@@ -22,7 +22,7 @@ torchrun --nproc_per_node=8 --master_port 1237  src/training/train.py \
     --lora_dropout 0.05 \
     --deepspeed scripts/zero2.json \
     --model_id $MODEL_NAME \
-    --data_path data/grounding/ground_train/chunk01.json,data/grounding/ground_train/chunk02.json,data/grounding/ground_train/chunk02_enhanced.json,data/grounding/ground_train/chunk01_enhanced.json \
+    --data_path data/grounding/train/chunk01.json,data/grounding/train/chunk02.json,data/grounding/train/chunk02_enhanced.json,data/grounding/train/chunk01_enhanced.json \
     --image_folder data/images \
     --freeze_vision_tower $freeze_vision_tower \
     --freeze_llm $freeze_llm \

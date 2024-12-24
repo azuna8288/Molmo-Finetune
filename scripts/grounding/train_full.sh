@@ -18,7 +18,7 @@ OUT_DIR="output/full_epoch${num_train_epochs}_bs${per_device_train_batch_size}_g
 deepspeed --master_port 1237 --include="localhost:0,1,2,3,4,5,6,7"  src/training/train.py \
     --deepspeed scripts/zero3.json \
     --model_id $MODEL_NAME \
-    --data_path data/grounding/ground_train/chunk01.json,data/grounding/ground_train/chunk02.json,data/grounding/ground_train/chunk02_enhanced.json,data/grounding/ground_train/chunk01_enhanced.json \
+    --data_path data/grounding/train/chunk01.json,data/grounding/train/chunk02.json,data/grounding/train/chunk02_enhanced.json,data/grounding/train/chunk01_enhanced.json \
     --image_folder data/images \
     --freeze_vision_tower $freeze_vision_tower \
     --freeze_llm $freeze_llm \

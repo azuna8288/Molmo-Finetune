@@ -13,7 +13,7 @@ i=0
 for model_version in "${model_versions[@]}"; do
     CUDA_VISIBLE_DEVICES=$i python3 evaluation/eval_main.py \
         --model_path "${model_version}" \
-        --data_path data/grounding/ground_test/chunk03.parquet \
+        --data_path data/grounding/val/chunk03.parquet \
         --img_folder_path "data/images" \
         --out_path "output/${model_version}_ground.txt" &
     
